@@ -1,11 +1,17 @@
 # 西南民族大学本科毕业设计论文模版
-This project provide a LaTeX template for SWUN Bachelor degree thesis.
+本项目给出了一个毕业设计论文的模板，可以忽略一些LaTeX的语法细节进行高效论文编写。
 
-# 项目介绍
+使用过程中若遇到任何问题，欢迎联系我：**[hi[at]changkun.us](mailto:hi@changkun.us)**。
+
+# 注意事项
 - 适用于西南民族大学学生
 - 目前仅支持本科生毕业论文
-- 项目开发中，敬请期待
 
+# 板式效果
+![](./images/demo0.png)
+![](./images/demo1.png)
+![](./images/demo2.png)
+![](./images/demo3.png)
 # 许可证
 本项目依照 GNU LGPL 协议授权分发的自由软件, 在使用本项目时，您的可以：
 
