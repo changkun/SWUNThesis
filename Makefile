@@ -6,6 +6,7 @@ main.pdf: main.tex src/*tex swunthesis.sty
 	bibtex main
 	xelatex main
 	xelatex main
+	make clean
 
 clean:
 	rm -f src/*.aux *.aux *.log *.toc *.glo *.idx *.ilg *.out *.bbl *.thm *.blg *.lot *.lof

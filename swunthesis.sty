@@ -1,9 +1,17 @@
+
+% 引入基本宏包
+\usepackage{amsmath}
+
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+
 % 定义基础命令
 % ==========================================================
 % thesis title
 % Usage: \newcommand{ \your_command }[paramater_number]{content}
 %        \renewcommand{ \old_command }[parameter_number]{content}
-
 \newcommand{\titleValue}{}
 \renewcommand{\title}[1]{\renewcommand{\titleValue}{#1}}
 \newcommand{\entitleValue}{}
@@ -23,6 +31,14 @@
 \newcommand{\enadviser}[1]{\renewcommand{\varAdviserEng}{#1}}
 \newcommand{\advTitle}{}
 \newcommand{\advtitle}[1]{\renewcommand{\advTitle}{#1}}
+
+\newcommand{\varCoAdviser}{}
+\newcommand{\coadviser}[1]{\renewcommand{\varCoAdviser}{#1}}
+\newcommand{\varCoAdviserEng}{}
+\newcommand{\encoadviser}[1]{\renewcommand{\varCoAdviserEng}{#1}}
+\newcommand{\coadvTitle}{}
+\newcommand{\coadvtitle}[1]{\renewcommand{\coadvTitle}{#1}}
+
 % college name
 \newcommand{\varCollege}{}
 \newcommand{\college}[1]{\renewcommand{\varCollege}{#1}}
@@ -45,7 +61,6 @@
 \usepackage{csvsimple}  % import data from csv
 \usepackage{booktabs}
 
-
 % 代码样式
 \usepackage{listings}
 \usepackage[dvipsnames]{xcolor}
@@ -54,26 +69,60 @@
 %\definecolor{mygreen}{rgb}{0,0.6,0}
 %\definecolor{mygray}{rgb}{0.5,0.5,0.5}
 %\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{keyword}{HTML}{BA2CA3}
+\definecolor{string}{HTML}{D12F1B}
+\definecolor{comment}{HTML}{008400}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray}\ttfamily,
+  stringstyle=\color{green!50!yellow}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstdefinelanguage{Swift}{
+  keywords={
+    func,if,then,else,for,in,while,do,switch,case,default,where,break,continue,fallthrough,return,
+    typealias,struct,class,enum,protocol,var,func,let,get,set,willSet,didSet,inout,init,deinit,extension,
+    subscript,prefix,operator,infix,postfix,precedence,associativity,left,right,none,convenience,dynamic,
+    final,lazy,mutating,nonmutating,optional,override,required,static,unowned,safe,weak,internal,
+    private,public,is,as,self,unsafe,dynamicType,true,false,nil,Type,Protocol,
+  },
+  comment=[l]{//}, % l is for line comment
+  morecomment=[s]{/*}{*/}, % s is for start and end delimiter
+  morestring=[b]", % defines that strings are enclosed in double quotes
+  keywordstyle=\color{keyword},
+  commentstyle=\color{gray}\ttfamily,
+  stringstyle=\color{green!50!yellow}\ttfamily,
+}
 
 \lstset{
-  basicstyle={\small\ttfamily},        	
-  keywordstyle={\bfseries\color{NavyBlue}},  		  
-  breaklines=true,                  			
-  emphstyle={\bfseries\color{Rhodamine}},     		
-  commentstyle={\color{PineGreen!60!black}}, 		
-  stringstyle={\rmfamily\color{YellowOrange}},     						
-  showstringspaces=false,          					
-  frame=shadowbox,	                     		
-  breakatwhitespace=false,       
-  captionpos=b,      
-  extendedchars=true,              
-  keepspaces=true,          
+  basicstyle={\small\ttfamily},
+  keywordstyle={\bfseries\color{NavyBlue}},
+  breaklines=true,
+  emphstyle={\bfseries\color{Rhodamine}},
+  commentstyle={\color{PineGreen!60!black}},
+  stringstyle={\rmfamily\color{YellowOrange}},
+  showstringspaces=false,
+  frame=shadowbox,
+  breakatwhitespace=false,
+  captionpos=b,
+  extendedchars=true,
+  keepspaces=true,
   numbers=left,
-  numberstyle=\tiny, 
+  numberstyle=\tiny,
   rulecolor=\color{black},
-  rulesepcolor={\color{blue!20!white}},   
+  rulesepcolor={\color{blue!20!white}},
   showspaces=false,
 }
+\renewcommand{\lstlistingname}{代码片段}
 
 % =========================================================
 % 摘要
@@ -82,36 +131,32 @@
 \newcommand{\varKeyword}{}
 \newcommand{\keyword}[1]{\renewcommand{\varKeyword}{#1}}
 
+\newcommand{\Ackno}{}
+\newcommand{\ackno}[1]{\renewcommand{\Ackno}}
+
 \renewenvironment{abstract}[1]{
 \addtolength{\leftskip}{1.1cm}
 \addtolength{\rightskip}{1.1cm}
-\thispagestyle{empty}
+%\thispagestyle{empty}
+%\newcounter{pages}{1}
 \addtocounter{page}{-1}
 \vspace*{1cm}
-\centerline{\heiti \zihao{-2} \textbf{\titleValue}}
-\vspace{1cm}
-%\centerline{\kaishu \zihao{4} \varCollege}
-\vspace{1cm}
-%\centerline{\kaishu \zihao{4} 学生:\varAuthor \hspace{1cm} 指导教师:\varAdviser}
+\centerline{\heiti \zihao{-3} {摘要}}
 \vspace{1.2cm}
 \kaishu \zihao{5}
-\textbf{摘要} \keyword{#1} }
-{\par \textbf{关键词 } \varKeyword \clearpage}
+\keyword{#1} }
+{\\\par \textbf{关键词 } \varKeyword \clearpage}
 \newenvironment{abstractEng}[1]{
 \addtolength{\leftskip}{1.1cm}
 \addtolength{\rightskip}{1.1cm}
-\thispagestyle{empty}
-\addtocounter{page}{-1}
+%\thispagestyle{empty}
+%\addtocounter{page}{1}
 \vspace*{1cm}
-\centerline{\heiti \zihao{-2} \textbf{\entitleValue}}
-\vspace{1cm}
-%\centerline{\kaishu \zihao{4} \varCollegeEng}
-\vspace{1cm}
-%\centerline{\kaishu \zihao{4} Student:\varAuthorEng \hspace{1cm} Adviser:\varAdviserEng}
+\centerline{\heiti \zihao{-3} {Abstract}}
 \vspace{1.2cm}
-\kaishu \zihao{5} 
-\textbf{Abstract} \keyword{#1} }
-{\par \textbf{Keywords} \varKeyword \clearpage}
+\kaishu \zihao{5}
+\keyword{#1} }
+{\\\par \textbf{Keywords} \varKeyword \clearpage}
 
 \usepackage{xcolor}
 \usepackage[CJKbookmarks=true,pdfborder=0 0 1]{hyperref}
@@ -127,28 +172,34 @@
 \vspace*{0cm}
 \centerline{\includegraphics[height=1.6cm]{./images/title}}
 \vspace*{1.2cm}
-\centerline{\songti \zihao{3} \textbf{本科生毕业设计(论文)} } % skip bold, it's a hack and i dont know why
+\centerline{\songti\zihao{3}本~~科~~生~~毕~~业~~设~~计(论~~文)} % skip bold, it's a hack and i dont know why
 \vspace*{1.5cm}
-\centerline{\textbf{\heiti \zihao{2} \titleValue}}
-\vspace*{3.5cm}
+\centerline{\songti \zihao{3} 题目：\titleValue}
+\centerline{\songti~}
+\centerline{\songti \zihao{4} \entitleValue}
+\vspace*{4.0cm}
 \centerline{
 \begin{tabular}{ b{2cm} >{\centering\arraybackslash}b{8cm}}
 %\songti \zihao{4} 题\hspace{1cm}目 & \textbf{\kaishu \zihao{4} \titleValue} \\[-3pt]
 %\cline{2-2} \\[0.6cm]
-\songti \zihao{4} 教学单位 & \textbf{\kaishu \zihao{4} \varCollege} \\[-3pt]
-\cline{2-2} \\[0.6cm]
-\songti \zihao{4} 姓\hspace{1cm}名 & \textbf{\kaishu \zihao{4} \varAuthor} \\[-3pt]
-\cline{2-2} \\[0.6cm]
-\songti \zihao{4} 学\hspace{1cm}号 & \textbf{\kaishu \zihao{4} \varID} \\[-3pt]
-\cline{2-2} \\[0.6cm]
-\songti \zihao{4} 年\hspace{1cm}级 & \textbf{\kaishu \zihao{4} \varGrade} \\[-3pt]
-\cline{2-2} \\[0.6cm]
-\songti \zihao{4} 专\hspace{1cm}业 & \textbf{\kaishu \zihao{4} \varMajor} \\[-3pt]
-\cline{2-2} \\[0.6cm]
-\songti \zihao{4} 指导老师 & \textbf{\kaishu \zihao{4} \varAdviser} \\[-3pt]
-\cline{2-2} \\[0.6cm]
-\songti \zihao{4} 职\hspace{1cm}称 & \textbf{\kaishu \zihao{4} \advTitle} \\[-3pt]
-\cline{2-2} \\[0.6cm]
+\songti \zihao{4} 教学单位 & {\kaishu \zihao{4} \varCollege} \\[-3pt]
+\cline{2-2} \\[0.1cm]
+\songti \zihao{4} 姓\hspace{1cm}名 & {\kaishu \zihao{4} \varAuthor} \\[-3pt]
+\cline{2-2} \\[0.1cm]
+\songti \zihao{4} 学\hspace{1cm}号 & {\kaishu \zihao{4} \varID} \\[-3pt]
+\cline{2-2} \\[0.1cm]
+\songti \zihao{4} 年\hspace{1cm}级 & {\kaishu \zihao{4} \varGrade} \\[-3pt]
+\cline{2-2} \\[0.1cm]
+\songti \zihao{4} 专\hspace{1cm}业 & {\kaishu \zihao{4} \varMajor} \\[-3pt]
+\cline{2-2} \\[0.1cm]
+\songti \zihao{4} 导\hspace{1cm}师 & {\kaishu \zihao{4} \varAdviser} \\[-3pt]
+\cline{2-2} \\[0.1cm]
+\songti \zihao{4} 职\hspace{1cm}称 & {\kaishu \zihao{4} \advTitle} \\[-3pt]
+\cline{2-2} \\[0.1cm]
+%\songti \zihao{4} 联合导师 & {\kaishu \zihao{4} \varCoAdviser} \\[-3pt]
+%\cline{2-2} \\[0.1cm]
+%\songti \zihao{4} 职\hspace{1cm}称 & {\kaishu \zihao{4} \coadvTitle} \\[-3pt]
+%\cline{2-2} \\[0.1cm]
 \end{tabular}
 }
 \vfill
@@ -181,15 +232,15 @@ headsep=0.5cm,          % <-- and this
 % =========================================================
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{\textcolor[gray]{0.5}{\zihao{5} 西南民族大学本科毕业生论文}}
-\rhead{\textcolor[gray]{0.5}{\zihao{5} \titleValue}}
+\lhead{\textcolor[gray]{0.5}{\zihao{-5} 西南民族大学本科毕业生论文}}
+\rhead{\textcolor[gray]{0.5}{\zihao{-5} \varAuthor：\titleValue}}
 
 % =========================================================
 
 % miscellaneous and debug
 % =========================================================
 \ctexset{today=small}
-%\usepackage{layout}        
+%\usepackage{layout}
 %\geometry{showframe=true}
 
 
@@ -198,22 +249,24 @@ headsep=0.5cm,          % <-- and this
 \setcounter{secnumdepth}{3}
 
 %setup chapter format
-\ctexset{ chapter = { beforeskip={-15pt} } }
+\ctexset{ chapter = { beforeskip={-10pt} } }
 \ctexset{ chapter = { afterskip={10pt} } }
-\ctexset{ chapter = { name={,} } }
+%\ctexset{ chapter = { name={第,章} } }
+\ctexset{ chapter = { name={} } }
+\ctexset{ chapter = { format={\raggedright}}}
 \ctexset{ chapter = { number={\arabic{chapter}} }}
 \ctexset{ chapter = { nameformat={\zihao{3} \bfseries \heiti} }}
 \ctexset{ chapter = { titleformat={\zihao{3} \bfseries \heiti} }}
 
 %setup section format
 \ctexset{ section = { beforeskip={10pt} }}
-\ctexset{ section = { afterskip={10pt} }}
+\ctexset{ section = { afterskip={5pt} }}
 \ctexset{ section = { format={\raggedright} }}
 \ctexset{ section = { nameformat={\zihao{-3}  \heiti} }}
 \ctexset{ section = { titleformat={\zihao{-3} \heiti} }}
 
 %setup subsection format
-\ctexset{ subsection = { beforeskip={0pt} }}
+\ctexset{ subsection = { beforeskip={5pt} }}
 \ctexset{ subsection = { afterskip={1pt} }}
 \ctexset{ subsection = { format={\raggedright} }}
 \ctexset{ subsection = { nameformat={\zihao{4}  \heiti} }}
@@ -227,9 +280,12 @@ headsep=0.5cm,          % <-- and this
 \ctexset{ subsubsection = { titleformat={\zihao{-4} \heiti} }}
 
 % let the chapter pages display headers
-\fancypagestyle{plain}{} 
+\fancypagestyle{plain}{}
 
 %setup font
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
 
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{tikz}
