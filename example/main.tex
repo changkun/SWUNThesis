@@ -1,0 +1,32 @@
+
+\documentclass[a4paper,fontset=none]{ctexrep} % 使用 CTEX 模板
+\usepackage{template/swunthesis}              % 引入 SWUNTHESIS 宏包
+\include{content/info} 	                      % 文章基本信息
+
+\begin{document}
+\makecover
+
+% 摘要
+\include{content/abstract}
+
+% 正文示例，按下方样式引入新的章节
+\include{content/ch01}
+\include{content/ch02}
+\include{content/ch03}
+
+% 附录
+\include{content/appendix}
+
+% 参考文献
+\nocite{*}
+\bibliographystyle{template/bstutf8}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{参考文献} % 向目录中添加参考文献条目
+\kaishu
+\bibliography{references/main}
+
+% 致谢
+\include{content/thanks}
+
+\end{document}
