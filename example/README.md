@@ -4,12 +4,6 @@
 
 ## 目录说明
 
-* [template](./template) - 此目录下为 SWUNThesis 宏包的全部依赖文件
-* [images](./image) - 此目录下为本项目的图片说明
-* [example](./example) - 此目录下展示了一个完整的论文示例
-* [README.md](./README.md) - 项目说明
-* [LICENCE](./LICENCE) - 项目使用许可
-* 
 * [template](template/*) - 论文宏包及其依赖文件，可以无视这个文件文件夹，我们建议 main.tex 和 此文件夹位于同一目录下，原因是我们不建议你修改应用 SWUNThesis 宏包的方式
 * [main.tex](main.tex) - 论文的基本骨架，如果 SWUNThesis 不能满足你的要求，那么你可以在此添加你需要的其他宏包，但我们不建议你修改应用 SWUNThesis 宏包的方式
 * [Makefile](Makefile) - 在*nix(Linux/Mac OS X)环境下，使用 \verb|make| 命令完成论文的整体编译
