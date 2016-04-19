@@ -10,6 +10,7 @@ SWUNThesis 为 **S**outh**W**est **U**niversity for **N**ationalities **Thesis**
 * [template](./template) - 此目录下为宏包的全部依赖文件
 * [images](./image) - 此目录下为本项目的图片说明
 * [example](./example) - 此目录下展示了一个完整的论文示例
+* [example-win](./example-win) - 此目录下展示了一个 Windows 平台下的完整的论文示例
 * [README.md](./README.md) - 项目说明
 * [LICENCE](./LICENSE) - 项目使用许可
 
@@ -20,6 +21,14 @@ SWUNThesis 为 **S**outh**W**est **U**niversity for **N**ationalities **Thesis**
 * Windows 用户请安装 [CTeX 完整版](http://www.ctex.org/CTeXDownload)(约1.3G) 或 [TeXLive for Windows](https://www.tug.org/texlive/windows.html)(推荐)
 * Linux Ubuntu 用户请使用 TeXLive，[Quick Install](https://www.tug.org/texlive/quickinstall.html) 
 * Mac 用户请安装 [MacTex](https://www.tug.org/mactex/)
+
+### CTeX 使用问题解决方案
+**Windows 用户注意**：CTEX 版本需要 2.0.2 以上，版本查看方式请在命令行中输入 `texdoc ctex` 。
+
+* 缺少 qtcore4.dll：[解决方案](https://www.baidu.com/link?url=xaETqZBcpIT6acrKVdN9g5iMWJ3WzBnipIK0JMvyVGYHWenKtpmk5Nw-bGdQRzHfnd2fnhDNFi4t4dCL3Yo2-8yY6Kf1zQtVUgwb2iVXnZS&wd=&eqid=f49127ba0004396b000000035716062d)
+* 请使用 xelatex 编译时提示缺少 amsmath，请使用 CTeX 自带的 Package Manager 安装此宏包
+* 若各种提示 `undefine control sequence` 则请在线更新 `ctex`, `l3kernel`, `l3packages`, `fontspec`, `xeCJK`, `csvsimple` 包，将所有宏包更新最佳。
+
 
 ### 宏包的使用
 
@@ -71,7 +80,13 @@ SWUNThesis 为 **S**outh**W**est **U**niversity for **N**ationalities **Thesis**
 
 **Windwos 用户**：
 
-* CTEX 用户先使用 `xelatex` 编译一次 `main.tex` 文件、再使用 `bibtex` 编译一次 `main.tex`、最后再使用 `xelatex` 编译两次 `main.tex` 即完成 `main.pdf` 的全部编译；
+* CTeX WinEdt 用户先使用 `xelatex` 编译一次 `main.tex` 文件、再使用 `bibtex` 编译一次 `main.tex`、最后再使用 `xelatex` 编译两次 `main.tex` 即完成 `main.pdf` 的全部编译，如下图所示
+
+![](./images/a.png)
+![](./images/b.png)
+![](./images/c.png)
+![](./images/d.png)
+
 * TeXLive 用户可以使用 `latexmk` 并添加 `-xelatex` 参数一次完成对 `main.tex` 的编译。
 
 **Linux/Mac 用户**：
