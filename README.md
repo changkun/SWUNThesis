@@ -13,10 +13,71 @@ SWUNThesis 为 **S**outh**W**est **U**niversity for **N**ationalities **Thesis**
 * [README.md](./README.md) - 项目说明
 * [LICENCE](./LICENSE) - 项目使用许可
 
-## 使用方法
+## 安装、使用说明
 
-将 template 文件夹、Makefile 与 main.tex 放置于同一目录下，使用
- 
+### 前置安装
+
+* Windows 用户请安装 [CTeX 完整版](http://www.ctex.org/CTeXDownload)(约1.3G) 或 [TeXLive for Windows](https://www.tug.org/texlive/windows.html)(推荐)
+* Linux Ubuntu 用户请使用 TeXLive，[Quick Install](https://www.tug.org/texlive/quickinstall.html) 
+* Mac 用户请安装 [MacTex](https://www.tug.org/mactex/)
+
+### 宏包的使用
+
+使用宏包的关键语句为：
+```latex
+\usepackage{template/swunthesis} 
+```
+
+文章的整体框架如下，使用示例请参考 [example](./example) 文件夹下的示范：
+
+```
+\documentclass[a4paper]{ctexrep} % 使用 CTEX 模板
+\usepackage{template/swunthesis}              % 引入 SWUNTHESIS 宏包
+\include{content/info} 	                      % 文章基本信息
+
+\begin{document}
+\makecover  % 生成封面、目录
+
+% 摘要
+\include{content/abstract}
+
+% 正文示例，按下方样式引入新的章节
+\include{content/ch01}
+\include{content/ch02}
+\include{content/ch03}
+
+% 附录
+\include{content/appendix}
+
+% 参考文献
+\nocite{*}
+\bibliographystyle{template/bstutf8}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{参考文献} % 向目录中添加参考文献条目，不要删除此行
+\kaishu
+\bibliography{references/main}
+
+% 致谢
+\include{content/thanks}
+
+\end{document}
+```
+
+
+### 文档编译方法
+
+将 template 文件夹、Makefile 与 main.tex 放置于同一目录下，对于
+
+**Windwos 用户**：
+
+* CTEX 用户先使用 `xelatex` 编译一次 `main.tex` 文件、再使用 `bibtex` 编译一次 `main.tex`、最后再使用 `xelatex` 编译两次 `main.tex` 即完成 `main.pdf` 的全部编译；
+* TeXLive 用户可以使用 `latexmk` 并添加 `-xelatex` 参数一次完成对 `main.tex` 的编译。
+
+**Linux/Mac 用户**：
+
+* 直接在 `main.tex` 目录下使用：
+
 ```bash
 make 
 ```
