@@ -3,7 +3,18 @@ SWUNThesis 为 **S**outh**W**est **U**niversity for **N**ationalities **Thesis**
 
 本宏包旨在建立一个简单易用的西南民族大学学位论文模板，当前仅支持本科学士论文，对其他格式（如科技论文、报告、硕士学位论文等）的支持会陆续加入（可能？）。
 
-使用过程中若遇到任何问题，欢迎联系我：**[hi[at]changkun.us](mailto:hi@changkun.us)**。
+使用过程中若遇到任何问题，请按以下顺序提交问题：
+
+1. **[GitHub Issuse](https://github.com/changkun/SWUNThesis/issues)**
+2. **[hi[at]changkun.us](mailto:hi@changkun.us)**。
+
+使用宏包的关键语句为：
+
+```latex
+\usepackage{template/swunthesis} 
+```
+
+文章的整体框架如下，使用示例请参考 [example](./example) 文件夹下的示范。将 template 文件夹、Makefile 与 main.tex 放置于同一目录下，并将正文内容分章节放置于 `content` 目录下即可使用，下方有具体的安装和使用教程。
 
 ## 目录说明
 
@@ -14,69 +25,31 @@ SWUNThesis 为 **S**outh**W**est **U**niversity for **N**ationalities **Thesis**
 * [README.md](./README.md) - 项目说明
 * [LICENCE](./LICENSE) - 项目使用许可
 
-## 安装、使用说明
+## 安装、使用教程
 
 ### 前置安装
 
-* Windows 用户请安装 [CTeX 完整版](http://www.ctex.org/CTeXDownload)(约1.3G) 或 [TeXLive for Windows](https://www.tug.org/texlive/windows.html)(推荐)
-* Linux Ubuntu 用户请使用 TeXLive，[Quick Install](https://www.tug.org/texlive/quickinstall.html) 
-* Mac 用户请安装 [MacTex](https://www.tug.org/mactex/)
+* Windows 用户请安装 [CTeX 完整版](http://www.ctex.org/CTeXDownload)(约1.3G, 推荐) 或 [TeXLive for Windows](https://www.tug.org/texlive/windows.html)
 
-### CTeX 使用问题解决方案
-**Windows 用户注意**：CTEX 版本需要 2.0.2 以上，版本查看方式请在命令行中输入 `texdoc ctex` 。
+> CTeX WinEdt 编译问题解决方案
+> 
+> **Windows 用户注意**：CTEX 版本需要 2.0.2 以上，版本查看方式请在命令行中输入 `texdoc ctex` 。
 
-* 缺少 qtcore4.dll：[解决方案](https://www.baidu.com/link?url=xaETqZBcpIT6acrKVdN9g5iMWJ3WzBnipIK0JMvyVGYHWenKtpmk5Nw-bGdQRzHfnd2fnhDNFi4t4dCL3Yo2-8yY6Kf1zQtVUgwb2iVXnZS&wd=&eqid=f49127ba0004396b000000035716062d)
-* 请使用 xelatex 编译时提示缺少 amsmath，请使用 CTeX 自带的 Package Manager 安装此宏包
-* 若各种提示 `undefine control sequence` 则请在线更新 `ctex`, `l3kernel`, `l3packages`, `fontspec`, `xeCJK`, `csvsimple` 包，将所有宏包更新最佳。
+> * 缺少 qtcore4.dll：[解决方案](https://www.baidu.com/link?url=xaETqZBcpIT6acrKVdN9g5iMWJ3WzBnipIK0JMvyVGYHWenKtpmk5Nw-bGdQRzHfnd2fnhDNFi4t4dCL3Yo2-8yY6Kf1zQtVUgwb2iVXnZS&wd=&eqid=f49127ba0004396b000000035716062d)
+> * 请使用 `xelatex` 编译时提示缺少 `amsmath`，请使用 CTeX 自带的 Package Manager 安装此宏包
+> * 若各种提示 `undefine control sequence` 则请在线更新 `ctex`, `l3kernel`, `l3packages`, `xeCJK`, `csvsimple` 包，将所有宏包更新最佳。
 
+* Linux Ubuntu 用户请使用 TeXLive，在终端中使用： 
 
-### 宏包的使用
-
-使用宏包的关键语句为：
-```latex
-\usepackage{template/swunthesis} 
+```bash
+sudo apt-get install texlive-full
 ```
 
-文章的整体框架如下，使用示例请参考 [example](./example) 文件夹下的示范：
+即可完成安装。
 
-```
-\documentclass[a4paper]{ctexrep} % 使用 CTEX 模板
-\usepackage{template/swunthesis}              % 引入 SWUNTHESIS 宏包
-\include{content/info} 	                      % 文章基本信息
-
-\begin{document}
-\makecover  % 生成封面、目录
-
-% 摘要
-\include{content/abstract}
-
-% 正文示例，按下方样式引入新的章节
-\include{content/ch01}
-\include{content/ch02}
-\include{content/ch03}
-
-% 附录
-\include{content/appendix}
-
-% 参考文献
-\nocite{*}
-\bibliographystyle{template/bstutf8}
-\clearpage
-\phantomsection
-\addcontentsline{toc}{chapter}{参考文献} % 向目录中添加参考文献条目，不要删除此行
-\kaishu
-\bibliography{references/main}
-
-% 致谢
-\include{content/thanks}
-
-\end{document}
-```
-
+* Mac 用户请下载 [MacTex](https://www.tug.org/mactex/) 安装包进行安装
 
 ### 文档编译方法
-
-将 template 文件夹、Makefile 与 main.tex 放置于同一目录下，对于
 
 **Windwos 用户**：
 
@@ -89,11 +62,12 @@ SWUNThesis 为 **S**outh**W**est **U**niversity for **N**ationalities **Thesis**
 
 * TeXLive 用户可以使用 `latexmk` 并添加 `-xelatex` 参数一次完成对 `main.tex` 的编译。
 
-**Linux/Mac 用户**：
+**Linux(Ubuntu)/Mac 用户**：
 
 * 直接在 `main.tex` 目录下使用：
 
 ```bash
+make clean
 make 
 ```
 
